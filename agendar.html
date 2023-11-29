@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Agendar</title>
+        <script class="" src="agendar.js" defer></script>
+        <link href="./estilo.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        
+        <div class="formulario">
+            <div class="titulo">
+                <h1 class="">Agendamento</h1>
+                <h4 class="">Preencha com os dados a baixo .</h4>
+            </div>
+            <form onsubmit="cadastro" methods="POST">
+                <label for="servicos" class="">Serviço</label>
+                <select name="servicos" id="servicos" required>
+                    <option></option>
+                    <option id="1" value="1" class="">Lavagem Especializada de Carros</option>
+                    <option id="2" value="2" class="">Lavagem Especializada de Motos</option>
+                    <option id="3" value="3" class="">Detalhamento de Motor</option>
+                    <option id="4" value="4" class="">Revitalização de Faróis</option>
+                    <option id="5" value="5">Cristalização de Faróis</option>
+                    <option id="6" value="6" class="">Revitalização de Plásticos</option>
+                </select>
+                <label for="data">Data do Agendamento</label><input type="date" id="data" name="data" required>
+                <label for="data">Hora do Agendamento</label><input type="time" id="horario" name="horario"required>
+                
+                <br>
+                <button type="submit" id="send">Agendar</button>
+                <button type="reset">Limpar</button>
+                <br><br><br>
+            </form>
+            
+        </div>
+    </body>
+</html>

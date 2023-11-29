@@ -1,0 +1,96 @@
+body {
+    padding: 5px;
+    background: linear-gradient(45deg, #fe7d06, black);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: 100% 200%;
+    
+}
+header {
+    border: 1px solid orange;
+    height: 50px;
+    width: 100%;
+}
+.titulo {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: rgb(27, 27, 27);
+}
+
+.item {
+    display: block;
+    float: left;
+    margin-left: 5%;
+}
+.formulario{
+    background-image: url("./assets/imagem/bmw.png");
+    background-repeat: no-repeat;
+    background-size: 60% 105%;
+    background-position-x: 150%;
+    background-color: whitesmoke;
+    box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 9px;
+    width: 70%;
+    min-width: 600px;
+    padding: 50px;
+    padding-top: 10px;
+    margin: auto;
+    margin-top: 5%;
+    
+}
+.formulario label{
+    display: block;
+    margin-top: 35px;
+    font-size: x-large;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.formulario input,select{
+    border: 3px solid #6b6a69;
+    border-bottom: 3px solid #9f9e9e;
+    border-right: 3px solid #9f9e9e;
+    border-radius: 7px;
+    width: 55%;
+    height: 30px;
+}
+.formulario input:hover,select:hover{
+    transition: 0.3s;
+    border: 3px solid #fe7d06;
+}
+.formulario button {
+    border-radius: 10px;
+    margin-top: 5%;
+    margin-left: 8%;
+    width: 15%;
+    min-width: fit-content;
+    height: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: bolder;
+    background: linear-gradient(#fe7e06e9, rgb(0, 0, 0,0.5), #fe7e06e9);
+    color: white;
+    
+}
+.formulario button:hover {
+    background: #fe7e06c5;
+    transition: 1.0s;
+    cursor: pointer;
+}
+.formulario button:active {
+    cursor: progress;
+}
+.content-agenda{
+    display: flex;
+    justify-content: center; /* alinhamento horizontal */
+    align-items: center; /* alinhamento vertical */
+    height: 100%; /* altura da tela inteira - opcional */
+    width: 100%;
+    border: 1px solid black;
+}
+.agenda{
+    border: 1px solid white;
+    box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 9px;
+    width: 50%;
+    
+    padding: 20px;
+    background-color: whitesmoke;
+}
