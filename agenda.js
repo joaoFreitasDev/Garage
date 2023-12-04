@@ -13,7 +13,7 @@ function fazGet(){
     let cont 
     cont = 0
     let data
-    const user = "Jhon Wick"
+    const user = email
     const url = "http://localhost:5000/agendamentos"
     fetch(url)
     .then(response => {

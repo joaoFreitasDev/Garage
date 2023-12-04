@@ -1,20 +1,27 @@
 const btn = document.querySelector("#send");
 
-//function fazPost(url, dados) {
-//    let request = new XMLHttpRequest();
-//    request.open("POST", url, true);
-  //  request.setRequestHeader("Content-type", "aplication/json");
-    //console.log(JSON.stringify(dados));
-    //request.send(JSON.stringify(dados));
+async function fazGet() {
+  const url = 'http://localhost:5000/usuarioAtivo'; // Substitua pela URL da sua API
 
-    //request.onload = function() {
-    //    console.log(this.responseText);
-    //};
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('Erro ao buscar os dados');
+    }
+    
+    const data = await response.json(); // ou response.text() para dados de texto
+    // Ou realize alguma operação com os dados aqui
+    JSON.stringify(data);
+    return data["0"]["userActive"]
+     // Exemplo de uso dos dados aqui // Se precisar retornar os dados para uso externo à função
+  } catch (error) { 
+    console.error('Erro:', error);
+    return null; // Ou trate o erro de outra maneira, retornando um valor padrão, por exemplo
+  }
+}
 
-    //return alert(request.responseText);
-//};
 
-btn.addEventListener("click", function(e) {
+btn.addEventListener("click", async function(e) {
     e.preventDefault();
     const url = "http://localhost:5000/agendamentos";
     const data = document.querySelector("#data");
@@ -22,8 +29,11 @@ btn.addEventListener("click", function(e) {
     const dataHora = data.value + " " + hora.value;
     const servico= document.querySelector("#servicos");
     Number(servico);
-
-    const dados = {"cliente_id": 15, "data": `${dataHora}`, "servico_id": servico.value};
+   
+    const id = await fazGet()
+    
+    
+    const dados = {"cliente_id": id,  "servico_id": servico.value,"data": dataHora,};
 
     var options = {
         method: 'POST',
@@ -43,10 +53,14 @@ btn.addEventListener("click", function(e) {
         .then(function(data) {
             console.log(data); // Dados da resposta
           })
+        .catch(error => {
+          // Lidando com erros durante a requisição
+          console.log('Erro ao obter dados da API:', error);
+        });
 });
 
 function agendado(){
-    fetch(apiUrl)
+  fetch(apiUrl)
   .then(response => {
     // Verificando se a resposta da API foi bem-sucedida (status 200)
     if (!response.ok) {
@@ -65,3 +79,37 @@ function agendado(){
     console.error('Erro ao obter dados da API:', error);
   });
 }
+
+window.addEventListener('beforeunload', async function(e) {
+  // Aqui você pode executar ações quando a página está  sendo descarregada
+  // É importante notar que as ações aqui são limitadas e não garantem execução completa
+  e.preventDefault()
+  const id = await fazGet()
+  
+  const requestOptions = {
+    method: "DELETE",
+    headers: {
+      'Content-Type': 'application/json', // Se necessário, ajuste o tipo de conteúdo
+      // Outros cabeçalhos necessários podem ser adicionados aqui
+    },
+  };
+  
+  // Faz a requisição DELETE usando fetch
+  fetch("http://localhost:5000/usuarioAtivo"+"/"+id, requestOptions)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Não foi possível excluir o recurso');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Recurso excluído:', data); // Exibe os dados do recurso excluído
+      // Faça algo com a resposta, se necessário
+    })
+    .catch(error => {
+      console.error('Erro ao excluir recurso:', error);
+      // Trate o erro adequadamente
+    });
+  // Por exemplo, você pode registrar dados de rastreamento ou limpar algo
+});
+
